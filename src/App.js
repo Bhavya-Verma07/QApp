@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Start from "./Component/Start";
+import Quiz from "./Component/Quiz";
+import Result from "./Component/Result";
+import { QuizContext } from "./Context/QuizHolder";
+import { useContext } from "react";
 
 function App() {
+  const { start, exit } = useContext(QuizContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {
+      exit === false?
+    <>
+      {
+        start === true ? 
+        <Quiz />
+         :
+          <Start />
+          }</>
+    
+    :
+      <Result />
+    }
+    </>
   );
 }
 
